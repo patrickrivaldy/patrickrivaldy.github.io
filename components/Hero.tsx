@@ -163,10 +163,10 @@ export default function Hero() {
               <line x1="40" y1="230" x2="150" y2="230" stroke="currentColor" strokeOpacity=".5" strokeWidth="1.5" />
               <line x1="250" y1="230" x2="360" y2="230" stroke="currentColor" strokeOpacity=".5" strokeWidth="1.5" />
               <circle cx="200" cy="230" r="4" fill="currentColor" opacity=".9" />
-              <text x="212" y="220" fill="currentColor" fontFamily="JetBrains Mono" fontSize="9" letterSpacing="1">
+              <text x="212" y="220" fill="currentColor" fontFamily="var(--font-mono), monospace" fontSize="9" letterSpacing="1">
                 STATUS: COMPILED
               </text>
-              <text x="212" y="245" fill="currentColor" fontFamily="JetBrains Mono" fontSize="9" opacity=".75">
+              <text x="212" y="245" fill="currentColor" fontFamily="var(--font-mono), monospace" fontSize="9" opacity=".75">
                 FPS: {fps} // STABLE
               </text>
             </svg>

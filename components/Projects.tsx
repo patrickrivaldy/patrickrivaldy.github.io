@@ -39,7 +39,7 @@ const PROJECTS: Project[] = [
           <circle cx="180" cy="90" r="2.5" />
           <circle cx="300" cy="50" r="2" />
         </g>
-        <g fontFamily="JetBrains Mono" fontSize="8" fill="#9BA1A6">
+        <g fontFamily="var(--font-mono), monospace" fontSize="8" fill="#9BA1A6">
           <text x="12" y="20">GRID.SPATIAL // 2.4M PTS</text>
           <text x="12" y="212">LAT: -6.2 LON: 106.8</text>
         </g>
@@ -69,7 +69,7 @@ const PROJECTS: Project[] = [
           <line x1="0" y1="180" x2="400" y2="180" />
           <line x1="0" y1="140" x2="400" y2="140" opacity=".5" />
         </g>
-        <g fontFamily="JetBrains Mono" fontSize="8" fill="#9BA1A6">
+        <g fontFamily="var(--font-mono), monospace" fontSize="8" fill="#9BA1A6">
           <text x="12" y="20">ENGINE.MATCH // 420K OPS</text>
           <text x="12" y="212">P99 &lt; 0.12MS</text>
         </g>
@@ -103,7 +103,7 @@ const PROJECTS: Project[] = [
           <line x1="160" y1="130" x2="240" y2="120" />
           <line x1="240" y1="120" x2="320" y2="130" />
         </g>
-        <g fontFamily="JetBrains Mono" fontSize="8" fill="#9BA1A6">
+        <g fontFamily="var(--font-mono), monospace" fontSize="8" fill="#9BA1A6">
           <text x="12" y="20">SWARM.SIM // 8192 AGENTS</text>
           <text x="12" y="212">COMPUTE: 1.4MS // WEBGPU</text>
         </g>

@@ -1,2 +1,1 @@
 - 🌐 Live: <https://patrickrivaldy.github.io>
-- 💻 Repo: <https://github.com/patrickrivaldy/patrickrivaldy.github.io>
