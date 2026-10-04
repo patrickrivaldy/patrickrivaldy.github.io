@@ -1,4 +1,4 @@
-import Reveal from "./Reveal";
+import Reveal from "../shared/Reveal";
 
 // GANTI: riwayat karirmu di array ini
 const MILES = [

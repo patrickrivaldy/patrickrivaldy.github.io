@@ -1,8 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import BootOverlay from "../../components/BootOverlay";
-import ScrollReset from "../../components/ScrollReset";
+import BootOverlay from "../../components/layout/BootOverlay";
+import ScrollReset from "../../components/layout/ScrollReset";
 
 // GANTI: isi dengan data aslimu. Halaman ini siap cetak → "Simpan sebagai PDF".
 export default function CVPage() {

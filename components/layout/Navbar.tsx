@@ -27,6 +27,10 @@ export default function Navbar() {
   // Kunci scrollspy sesaat setelah klik: biar active tidak lompat-lompat
   // melewati seksi perantara saat smooth-scroll berjalan.
   const lock = useRef(0);
+  // Hysteresis scrollspy: seksi pemenang sementara + hitungan frame
+  // beruntun — cegah menu kedip di perbatasan section.
+  const seenRef = useRef(SECTORS[0]);
+  const streakRef = useRef(0);
 
   useEffect(() => {
     let ticking = false;
@@ -50,13 +54,22 @@ export default function Navbar() {
         }
         if (Date.now() < lock.current) return;
         // Scrollspy: samakan menu aktif dengan seksi yang sedang terlihat
-        // (logika sama dengan statusbar: seksi terakhir yang top-nya < 200px).
+        // (seksi terakhir yang top-nya < 200px). Pindah aktif hanya bila
+        // seksi baru bertahan 4 frame beruntun (hysteresis).
         let cur = SECTORS[0];
         for (const s of SECTORS) {
           const el = document.getElementById(s);
           if (el && el.getBoundingClientRect().top < 200) cur = s;
         }
-        setActive((prev) => (prev === `#${cur}` ? prev : `#${cur}`));
+        if (cur === seenRef.current) {
+          streakRef.current += 1;
+        } else {
+          seenRef.current = cur;
+          streakRef.current = 1;
+        }
+        if (streakRef.current >= 4) {
+          setActive((prev) => (prev === `#${cur}` ? prev : `#${cur}`));
+        }
       });
     };
     onScroll();

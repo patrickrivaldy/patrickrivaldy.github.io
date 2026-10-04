@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import Reveal from "./Reveal";
+import Reveal from "../shared/Reveal";
 
 export default function Contact() {
   const [sent, setSent] = useState(false);

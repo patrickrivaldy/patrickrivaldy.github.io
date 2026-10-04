@@ -1,64 +1,8 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
-import Typewriter from "./Typewriter";
-
-function useHudCanvas() {
-  const ref = useRef<HTMLCanvasElement>(null);
-
-  useEffect(() => {
-    const cv = ref.current;
-    if (!cv) return;
-    const ctx = cv.getContext("2d");
-    if (!ctx) return;
-    let raf = 0;
-    // Palet mengikuti tema aktif (dark / light) via CSS vars.
-    const pal = { bg: "#0d0f14", rgb: "240,242,245" };
-    const syncPal = () => {
-      try {
-        const cs = getComputedStyle(document.documentElement);
-        const bg = cs.getPropertyValue("--panel").trim();
-        const rgb = cs.getPropertyValue("--em-rgb").trim();
-        if (bg) pal.bg = bg;
-        if (rgb) pal.rgb = rgb;
-      } catch {
-        /* abaikan */
-      }
-    };
-    syncPal();
-    window.addEventListener("themechange", syncPal);
-
-    const draw = () => {
-      const w = (cv.width = cv.clientWidth);
-      const h = (cv.height = cv.clientHeight);
-      ctx.fillStyle = pal.bg;
-      ctx.fillRect(0, 0, w, h);
-      ctx.strokeStyle = `rgba(${pal.rgb},.06)`;
-      ctx.lineWidth = 1;
-      for (let x = 0; x < w; x += 32) {
-        ctx.beginPath();
-        ctx.moveTo(x, 0);
-        ctx.lineTo(x, h);
-        ctx.stroke();
-      }
-      for (let y = 0; y < h; y += 32) {
-        ctx.beginPath();
-        ctx.moveTo(0, y);
-        ctx.lineTo(w, y);
-        ctx.stroke();
-      }
-      raf = requestAnimationFrame(draw);
-    };
-    raf = requestAnimationFrame(draw);
-    return () => {
-      cancelAnimationFrame(raf);
-      window.removeEventListener("themechange", syncPal);
-    };
-  }, []);
-
-  return ref;
-}
+import Typewriter from "../shared/Typewriter";
 
 const METRICS = [
   { label: "LATENSI EKSEKUSI", value: "< 0.18 MS", w: "96%" },
@@ -68,7 +12,6 @@ const METRICS = [
 ];
 
 export default function Hero() {
-  const canvasRef = useHudCanvas();
   const [fps, setFps] = useState(120);
 
   useEffect(() => {
@@ -144,31 +87,28 @@ export default function Hero() {
             <span>FRAMEWORK: WEBGPU // THREEJS</span>
           </div>
           <div className="vf-stage chamfer">
-            <canvas ref={canvasRef} style={{ width: "100%", height: "100%" }} />
-            <div className="vf-scrim" />
-            <div className="vf-scan" />
             <svg
-              style={{ position: "absolute", inset: 0, width: "100%", height: "100%", pointerEvents: "none", color: "var(--emitter)" }}
+              style={{ position: "absolute", inset: 0, width: "100%", height: "100%", pointerEvents: "none", color: "var(--emitter)", opacity: 0.45 }}
               viewBox="0 0 400 500"
               fill="none"
               aria-hidden="true"
             >
               <g className="radar-spin" style={{ transformOrigin: "200px 230px" }}>
-                <circle cx="200" cy="230" r="120" stroke="currentColor" strokeOpacity=".35" strokeDasharray="6 8" />
+                <circle cx="200" cy="230" r="120" stroke="currentColor" strokeOpacity=".3" strokeDasharray="6 8" />
               </g>
-              <circle cx="200" cy="230" r="150" stroke="currentColor" strokeOpacity=".18" />
-              <line x1="200" y1="60" x2="200" y2="180" stroke="currentColor" strokeOpacity=".5" strokeWidth="1.5" />
-              <line x1="200" y1="280" x2="200" y2="400" stroke="currentColor" strokeOpacity=".5" strokeWidth="1.5" />
-              <line x1="40" y1="230" x2="150" y2="230" stroke="currentColor" strokeOpacity=".5" strokeWidth="1.5" />
-              <line x1="250" y1="230" x2="360" y2="230" stroke="currentColor" strokeOpacity=".5" strokeWidth="1.5" />
-              <circle cx="200" cy="230" r="4" fill="currentColor" opacity=".9" />
-              <text x="212" y="220" fill="currentColor" fontFamily="var(--font-mono), monospace" fontSize="9" letterSpacing="1">
-                STATUS: COMPILED
-              </text>
-              <text x="212" y="245" fill="currentColor" fontFamily="var(--font-mono), monospace" fontSize="9" opacity=".75">
-                FPS: {fps} // STABLE
-              </text>
+              <circle cx="200" cy="230" r="150" stroke="currentColor" strokeOpacity=".15" />
+              <line x1="200" y1="60" x2="200" y2="180" stroke="currentColor" strokeOpacity=".4" strokeWidth="1.5" />
+              <line x1="200" y1="280" x2="200" y2="400" stroke="currentColor" strokeOpacity=".4" strokeWidth="1.5" />
+              <line x1="40" y1="230" x2="150" y2="230" stroke="currentColor" strokeOpacity=".4" strokeWidth="1.5" />
+              <line x1="250" y1="230" x2="360" y2="230" stroke="currentColor" strokeOpacity=".4" strokeWidth="1.5" />
+              <circle cx="200" cy="230" r="4" fill="currentColor" opacity=".8" />
             </svg>
+            <div className="vf-scrim" />
+            <div className="vf-scan" />
+            <div className="t-micro" aria-hidden="true" style={{ position: "absolute", top: ".6rem", left: ".7rem", zIndex: 2, display: "flex", flexDirection: "column", gap: ".2rem", color: "var(--emitter)" }}>
+              <span>STATUS: COMPILED</span>
+              <span style={{ color: "var(--telemetry)" }}>FPS: {fps} // STABLE</span>
+            </div>
             <div className="vf-tag chamfer">
               <span style={{ display: "flex", flexDirection: "column" }}>
                 <span className="t-micro" style={{ color: "var(--telemetry)" }}>
