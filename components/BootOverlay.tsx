@@ -20,16 +20,13 @@ export default function BootOverlay() {
       setShow(false);
       return;
     }
-    document.body.style.overflow = "hidden";
+    // Catatan: scroll body TIDAK dikunci — overlay hanya menutup layar,
+    // jadi halaman langsung bisa di-scroll/digeser kapan pun.
     const t1 = setTimeout(() => setDone(true), 1350);
-    const t2 = setTimeout(() => {
-      setShow(false);
-      document.body.style.overflow = "";
-    }, 1750);
+    const t2 = setTimeout(() => setShow(false), 1750);
     return () => {
       clearTimeout(t1);
       clearTimeout(t2);
-      document.body.style.overflow = "";
     };
   }, [show]);
 
