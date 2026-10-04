@@ -29,19 +29,35 @@ export default function Navbar() {
   const lock = useRef(0);
 
   useEffect(() => {
+    let ticking = false;
+    let lastProg = -1;
     const onScroll = () => {
-      const h = document.documentElement;
-      const max = h.scrollHeight - h.clientHeight;
-      setProg(max > 0 ? Math.round((h.scrollTop / max) * 100) : 0);
-      if (Date.now() < lock.current) return;
-      // Scrollspy: samakan menu aktif dengan seksi yang sedang terlihat
-      // (logika sama dengan statusbar: seksi terakhir yang top-nya < 200px).
-      let cur = SECTORS[0];
-      for (const s of SECTORS) {
-        const el = document.getElementById(s);
-        if (el && el.getBoundingClientRect().top < 200) cur = s;
-      }
-      setActive(`#${cur}`);
+      // Pengaman lapis 2: halaman kegeser sedikit saja (mis. habis
+      // pencet link navigasi) → dropdown mobile pasti ketutup.
+      setOpen(false);
+      // Throttle via rAF: scroll bisa menembak puluhan event per frame,
+      // cukup sinkronkan state sekali per frame biar scroll tidak patah.
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        ticking = false;
+        const h = document.documentElement;
+        const max = h.scrollHeight - h.clientHeight;
+        const p = max > 0 ? Math.round((h.scrollTop / max) * 100) : 0;
+        if (p !== lastProg) {
+          lastProg = p;
+          setProg(p);
+        }
+        if (Date.now() < lock.current) return;
+        // Scrollspy: samakan menu aktif dengan seksi yang sedang terlihat
+        // (logika sama dengan statusbar: seksi terakhir yang top-nya < 200px).
+        let cur = SECTORS[0];
+        for (const s of SECTORS) {
+          const el = document.getElementById(s);
+          if (el && el.getBoundingClientRect().top < 200) cur = s;
+        }
+        setActive((prev) => (prev === `#${cur}` ? prev : `#${cur}`));
+      });
     };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -52,7 +68,14 @@ export default function Navbar() {
     <header className="strip">
       <div className="nav">
         <div className="wrap">
-          <nav className={`menu ${open ? "open" : ""}`}>
+          <nav
+            className={`menu ${open ? "open" : ""}`}
+            onClick={(e) => {
+              // Pengaman lapis 1: tap apa pun di dalam menu yang kena link
+              // pasti menutup dropdown (cadangan kalau handler link lolos).
+              if ((e.target as HTMLElement).closest("a")) setOpen(false);
+            }}
+          >
             {LINKS.map((l) => (
               <a
                 key={l.href}
@@ -73,10 +96,6 @@ export default function Navbar() {
             ))}
           </nav>
           <div style={{ display: "flex", gap: ".8rem", alignItems: "center" }}>
-            <a className="btn btn-primary chamfer-btn nav-cta" href="#kontak">
-              <span>&gt;_</span>
-              <span>HUBUNGI SAYA</span>
-            </a>
             <button
               className="burger"
               aria-label="Menu"

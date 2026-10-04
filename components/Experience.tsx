@@ -36,7 +36,7 @@ const MILES = [
 
 export default function Experience() {
   return (
-    <section id="pengalaman" className="band">
+    <section id="pengalaman">
       <div className="wrap" style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
         <div className="sec-head">
           <div>

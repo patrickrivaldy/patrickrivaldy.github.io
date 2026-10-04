@@ -5,17 +5,18 @@ import Projects from "../components/Projects";
 import Experience from "../components/Experience";
 import Contact from "../components/Contact";
 import Footer from "../components/Footer";
-import StatusBar from "../components/StatusBar";
 import BootOverlay from "../components/BootOverlay";
 import TickerDivider from "../components/TickerDivider";
 import CrosshairCursor from "../components/CrosshairCursor";
 import AmbientCanvas from "../components/AmbientCanvas";
 import ScrollLit from "../components/ScrollLit";
+import ScrollReset from "../components/ScrollReset";
 
 export default function Page() {
   return (
     <>
       <BootOverlay />
+      <ScrollReset />
       <CrosshairCursor />
       <ScrollLit />
       <div className="bg-fx" aria-hidden="true">
@@ -46,7 +47,6 @@ export default function Page() {
         <Contact />
       </main>
       <Footer />
-      <StatusBar />
     </>
   );
 }

@@ -32,7 +32,7 @@ const SKILLS = [
 
 export default function Skills() {
   return (
-    <section id="keahlian" className="band">
+    <section id="keahlian">
       <div className="wrap" style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
         <div className="sec-head">
           <div>

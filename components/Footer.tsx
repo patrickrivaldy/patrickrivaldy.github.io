@@ -75,9 +75,7 @@ export default function Footer() {
       </div>
 
       <div className="wrap">
-        <div className="foot-rule" aria-hidden="true">
-          <span>+</span>
-        </div>
+        <div className="foot-rule" aria-hidden="true" />
         <div className="foot-bot">
           <span>© 2026 ANDA DEV — SELURUH HAK CIPTA DILINDUNGI.</span>
           <span className="foot-telemetry">

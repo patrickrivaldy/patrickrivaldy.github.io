@@ -102,7 +102,6 @@ export default function Contact() {
                     [ Pesan terkirim langsung ke inbox pengembang ]
                   </span>
                   <button className="btn btn-big chamfer-btn" type="submit">
-                    <span>&gt;_</span>
                     <span>KIRIM PESAN</span>
                     <span>➤</span>
                   </button>

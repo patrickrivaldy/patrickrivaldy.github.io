@@ -166,8 +166,9 @@ export default function Projects() {
                         </span>
                       ))}
                     </div>
-                    <a className="link-more" href="#kontak">
-                      Lihat Detail Proyek →
+                    <a className="btn btn-big chamfer-btn" href="#kontak">
+                      <span>LIHAT DETAIL PROYEK</span>
+                      <span>➤</span>
                     </a>
                   </div>
                 </div>

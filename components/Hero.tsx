@@ -110,9 +110,8 @@ export default function Hero() {
           </p>
           <div className="cta-row">
             <a className="btn btn-big chamfer-btn" href="#proyek">
-              <span>&gt;_</span>
               <span>LIHAT PROYEK PILIHAN</span>
-              <span>→</span>
+              <span>➤</span>
             </a>
             <Link className="btn btn-ghost chamfer-btn btn-dl" href="/cv" title="Buka halaman CV siap cetak / simpan PDF">
               <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">

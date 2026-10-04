@@ -2,12 +2,14 @@
 
 import Link from "next/link";
 import BootOverlay from "../../components/BootOverlay";
+import ScrollReset from "../../components/ScrollReset";
 
 // GANTI: isi dengan data aslimu. Halaman ini siap cetak → "Simpan sebagai PDF".
 export default function CVPage() {
   return (
     <div className="cv-sheet">
       <BootOverlay />
+      <ScrollReset />
       <div className="wrap cv-inner">
         <div className="cv-actions print-hide">
           <Link className="btn btn-ghost chamfer-btn" href="/">
@@ -17,7 +19,6 @@ export default function CVPage() {
             className="btn btn-big chamfer-btn"
             onClick={() => window.print()}
           >
-            <span>&gt;_</span>
             <span>CETAK / SIMPAN PDF</span>
           </button>
         </div>

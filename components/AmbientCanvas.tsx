@@ -35,19 +35,25 @@ export default function AmbientCanvas() {
     let pts: P[] = [];
     let w = 0;
     let h = 0;
+    const coarse = window.matchMedia("(pointer: coarse)").matches;
     const resize = () => {
-      const dpr = Math.min(2, window.devicePixelRatio || 1);
+      const dpr = coarse
+        ? Math.min(1.5, window.devicePixelRatio || 1)
+        : Math.min(2, window.devicePixelRatio || 1);
       w = window.innerWidth;
       h = window.innerHeight;
       cv.width = Math.floor(w * dpr);
       cv.height = Math.floor(h * dpr);
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      const n = Math.max(35, Math.min(90, Math.floor((w * h) / 22000)));
+      const div = coarse ? 42000 : 22000;
+      const max = coarse ? 45 : 90;
+      const sp = coarse ? 0.22 : 0.35;
+      const n = Math.max(20, Math.min(max, Math.floor((w * h) / div)));
       pts = Array.from({ length: n }, () => ({
         x: Math.random() * w,
         y: Math.random() * h,
-        vx: (Math.random() - 0.5) * 0.35,
-        vy: (Math.random() - 0.5) * 0.35,
+        vx: (Math.random() - 0.5) * sp,
+        vy: (Math.random() - 0.5) * sp,
       }));
     };
     resize();
