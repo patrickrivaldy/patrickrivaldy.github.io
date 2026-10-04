@@ -16,6 +16,14 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState("#tentang");
   const [prog, setProg] = useState(0);
+  // Label indikator seksi aktif (tampil di mode burger, update ikut scroll).
+  const curIdx = Math.max(
+    0,
+    LINKS.findIndex((l) => l.href === active)
+  );
+  const curLabel = `${String(curIdx + 1).padStart(2, "0")}/05 · ${LINKS[curIdx].label
+    .split("// ")[1]
+    .toUpperCase()}`;
   // Kunci scrollspy sesaat setelah klik: biar active tidak lompat-lompat
   // melewati seksi perantara saat smooth-scroll berjalan.
   const lock = useRef(0);
@@ -77,6 +85,12 @@ export default function Navbar() {
             >
               {open ? "[×]" : "[=]"}
             </button>
+            <span className="nav-current" aria-live="polite" title="Seksi aktif">
+              <span className="dot pulse" />
+              <span key={active} className="nav-current-key">
+                {curLabel}
+              </span>
+            </span>
           </div>
         </div>
       </div>
