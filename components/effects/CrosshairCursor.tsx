@@ -67,9 +67,9 @@ export default function CrosshairCursor() {
       const t = (e.target as HTMLElement | null)?.closest?.(
         "a, button, input, textarea, select, [role='button']"
       );
-      // Lock-on hanya untuk tombol (bentuk plus tetap, tangkai yang gerak).
+      // Lock-on untuk tombol & link (bentuk plus tetap, tangkai yang gerak).
       const b = (e.target as HTMLElement | null)?.closest?.(
-        "button, a.btn, [role='button']"
+        "button, a, [role='button']"
       ) as HTMLElement | null;
       // Mode target ganti mode hover (scale box bikin frame meleset).
       if (b) {
@@ -92,7 +92,7 @@ export default function CrosshairCursor() {
       if (!target) return;
       const under = document.elementFromPoint(tx, ty);
       const still = (under as HTMLElement | null)?.closest?.(
-        "button, a.btn, [role='button']"
+        "button, a, [role='button']"
       );
       if (still !== target) clearTarget();
     };
@@ -112,7 +112,7 @@ export default function CrosshairCursor() {
       if (frame % 12 === 0) {
         const under = document.elementFromPoint(tx, ty);
         const b = (under as HTMLElement | null)?.closest?.(
-          "button, a.btn, [role='button']"
+          "button, a, [role='button']"
         ) as HTMLElement | null;
         if (b !== target) {
           clearTarget();

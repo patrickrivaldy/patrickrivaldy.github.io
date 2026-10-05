@@ -2,11 +2,8 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import dynamic from "next/dynamic";
 import Typewriter from "../shared/Typewriter";
 import LiquidFill from "../shared/LiquidFill";
-
-const Lanyard = dynamic(() => import("../effects/Lanyard"), { ssr: false });
 
 const METRICS = [
   { label: "LATENSI EKSEKUSI", value: "< 0.18 MS", w: "96%" },
@@ -109,9 +106,6 @@ export default function Hero() {
               <line x1="250" y1="230" x2="360" y2="230" stroke="currentColor" strokeOpacity=".4" strokeWidth="1.5" />
               <circle cx="200" cy="230" r="4" fill="currentColor" opacity=".8" />
             </svg>
-            <div style={{ position: "absolute", inset: 0 }}>
-              <Lanyard position={[0, 0, 24]} gravity={[0, -40, 0]} lanyardWidth={4} />
-            </div>
             <div className="vf-scrim" />
             <div className="vf-scan" />
             <div className="t-micro" aria-hidden="true" style={{ position: "absolute", top: ".6rem", left: ".7rem", zIndex: 2, display: "flex", flexDirection: "column", gap: ".2rem", color: "var(--emitter)" }}>
