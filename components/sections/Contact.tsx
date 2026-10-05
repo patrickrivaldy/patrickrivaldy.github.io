@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Reveal from "../shared/Reveal";
+import LiquidFill from "../shared/LiquidFill";
 
 export default function Contact() {
   const [sent, setSent] = useState(false);
@@ -19,6 +20,7 @@ export default function Contact() {
           <div style={{ paddingTop: ".5rem" }}>
             {/* GANTI: email, ketersediaan, waktu respon */}
             <div className="info-row chamfer">
+              <LiquidFill />
               <span className="t-micro" style={{ color: "var(--wireframe)" }}>
                 EMAIL LANGSUNG:
               </span>
@@ -27,6 +29,7 @@ export default function Contact() {
               </a>
             </div>
             <div className="info-row chamfer">
+              <LiquidFill />
               <span className="t-micro" style={{ color: "var(--wireframe)" }}>
                 KETERSEDIAAN:
               </span>
@@ -35,6 +38,7 @@ export default function Contact() {
               </span>
             </div>
             <div className="info-row chamfer">
+              <LiquidFill />
               <span className="t-micro" style={{ color: "var(--wireframe)" }}>
                 WAKTU RESPON:
               </span>
@@ -46,6 +50,7 @@ export default function Contact() {
         </div>
         <Reveal>
           <div className="terminal chamfer">
+            <LiquidFill />
             <div className="term-head">
               <span>■ ■ ■ &nbsp; contact_form.tsx</span>
               <span>ENKRIPSI: TLS 1.3 // HTTPS</span>

@@ -1,4 +1,5 @@
 // Pita data berjalan: 2 sekuen identik selebar viewport → loop -50% selalu mulus.
+import LiquidFill from "./LiquidFill";
 export default function TickerDivider({
   items = [
     "OBSIDIAN TELEMETRY",
@@ -15,6 +16,7 @@ export default function TickerDivider({
 }) {
   return (
     <div className="ticker" aria-hidden="true">
+      <LiquidFill />
       <div className="ticker-track t-micro">
         {[0, 1].map((half) => (
           <div key={half} className="ticker-seq" aria-hidden={half === 1}>

@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import LiquidFill from "../shared/LiquidFill";
+import ShapeGrid from "../effects/ShapeGrid";
 
 const LINES = [
   "> MOUNTING /dev/ghost0 ............ OK",
@@ -34,7 +36,17 @@ export default function BootOverlay() {
 
   return (
     <div className={`boot${done ? " done" : ""}`} aria-hidden="true">
+      <ShapeGrid
+        direction="diagonal"
+        speed={0.5}
+        borderColor="rgba(240,242,245,0.08)"
+        squareSize={60}
+        hoverFillColor="rgba(240,242,245,0.14)"
+        shape="square"
+        hoverTrailAmount={0}
+      />
       <div className="boot-box chamfer">
+        <LiquidFill />
         <div className="t-micro boot-title">
           <span className="dot pulse" /> GHOST//RUN — SYSTEM BOOT
         </div>

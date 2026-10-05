@@ -3,6 +3,7 @@
 import Link from "next/link";
 import BootOverlay from "../../components/layout/BootOverlay";
 import ScrollReset from "../../components/layout/ScrollReset";
+import LiquidFill from "../../components/shared/LiquidFill";
 
 // GANTI: isi dengan data aslimu. Halaman ini siap cetak → "Simpan sebagai PDF".
 export default function CVPage() {
@@ -24,6 +25,7 @@ export default function CVPage() {
         </div>
 
         <div className="cv-paper chamfer">
+          <LiquidFill />
           <div className="cv-head">
             <div>
               <div className="t-micro" style={{ color: "var(--telemetry)" }}>

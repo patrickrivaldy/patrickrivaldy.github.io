@@ -1,4 +1,5 @@
 import Reveal from "../shared/Reveal";
+import LiquidFill from "../shared/LiquidFill";
 
 type Project = {
   code: string;
@@ -129,6 +130,7 @@ export default function Projects() {
           {PROJECTS.map((p) => (
             <Reveal key={p.code}>
               <article className="proj chamfer">
+                <LiquidFill />
                 <div className="p-visual chamfer">
                   {p.scene}
                   <div className="scan" />
@@ -148,6 +150,7 @@ export default function Projects() {
                   <div className="p-stats">
                     {p.stats.map((s) => (
                       <div key={s.label} className="p-stat">
+                        <LiquidFill />
                         <span className="t-micro" style={{ color: "var(--wireframe)" }}>
                           {s.label}
                         </span>

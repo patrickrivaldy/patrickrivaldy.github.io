@@ -1,4 +1,5 @@
 import Reveal from "../shared/Reveal";
+import LiquidFill from "../shared/LiquidFill";
 
 const SKILLS = [
   {
@@ -47,6 +48,7 @@ export default function Skills() {
           {SKILLS.map((s) => (
             <Reveal key={s.idx}>
               <div className="card chamfer" style={{ height: "100%" }}>
+                <LiquidFill />
                 <div style={{ display: "flex", flexDirection: "column", gap: ".8rem" }}>
                   <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                     <span className="idx">{s.idx}</span>

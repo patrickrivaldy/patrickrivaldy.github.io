@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import LiquidFill from "../shared/LiquidFill";
 
 const LINKS = [
   { href: "#tentang", label: "01 // Tentang" },
@@ -79,6 +80,7 @@ export default function Navbar() {
 
   return (
     <header className="strip">
+      <LiquidFill />
       <div className="nav">
         <div className="wrap">
           <nav
@@ -89,6 +91,7 @@ export default function Navbar() {
               if ((e.target as HTMLElement).closest("a")) setOpen(false);
             }}
           >
+            <LiquidFill />
             {LINKS.map((l) => (
               <a
                 key={l.href}

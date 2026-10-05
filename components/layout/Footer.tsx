@@ -1,5 +1,7 @@
 "use client";
 
+import LiquidFill from "../shared/LiquidFill";
+
 const NAV = [
   { href: "/#tentang", label: "01 // TENTANG" },
   { href: "/#keahlian", label: "02 // KEAHLIAN" },
@@ -17,6 +19,7 @@ const SOCIAL = [
 export default function Footer() {
   return (
     <footer className="foot">
+      <LiquidFill />
       <div className="foot-ghost" aria-hidden="true">
         GHOST//RUN
       </div>

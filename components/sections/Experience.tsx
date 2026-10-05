@@ -1,4 +1,5 @@
 import Reveal from "../shared/Reveal";
+import LiquidFill from "../shared/LiquidFill";
 
 // GANTI: riwayat karirmu di array ini
 const MILES = [
@@ -51,6 +52,7 @@ export default function Experience() {
           {MILES.map((m) => (
             <Reveal key={m.period}>
               <div className={`mile chamfer${m.now ? " now" : ""}`}>
+                <LiquidFill />
                 <div>
                   <span className="date-chip chamfer">{m.period}</span>
                   <br />
